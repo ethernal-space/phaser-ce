@@ -13005,8 +13005,11 @@ World.prototype.internalStep = function(dt){
 
         // Loop over all shapes of body i
         for(var k=0, Nshapesi=bi.shapes.length; k!==Nshapesi; k++){
-            var si = bi.shapes[k],
-                xi = si.position,
+            var si = bi.shapes[k];
+            if (!si){
+				continue;
+			}
+            var xi = si.position,
                 ai = si.angle;
 
             // All shapes of body j
