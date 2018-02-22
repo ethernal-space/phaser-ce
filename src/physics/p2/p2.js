@@ -13014,8 +13014,11 @@ World.prototype.internalStep = function(dt){
 
             // All shapes of body j
             for(var l=0, Nshapesj=bj.shapes.length; l!==Nshapesj; l++){
-                var sj = bj.shapes[l],
-                    xj = sj.position,
+                var sj = bj.shapes[l];
+                if (!sj){
+                    continue;
+                }
+                var xj = sj.position,
                     aj = sj.angle;
 
                 var cm = this.defaultContactMaterial;
@@ -13484,6 +13487,9 @@ World.prototype.hitTest = function(worldPoint,bodies,precision){
 
         for(var j=0, NS=b.shapes.length; j!==NS; j++){
             var s = b.shapes[j];
+            if (!s){
+				continue;
+			}
 
             // Get shape world position + angle
             vec2.rotate(x, s.position, b.angle);
